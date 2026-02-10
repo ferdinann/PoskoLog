@@ -1,18 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Client } from "@gradio/client";
 import './App.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState("poskolog"); 
   const [loading, setLoading] = useState(false);
-  
-  // State Khusus PoskoLog
   const [poskoComment, setPoskoComment] = useState("");
   const [poskoStatus, setPoskoStatus] = useState("");
   const [adminData, setAdminData] = useState({ chart: null, table: [], total: "" });
   const [filterSentimen, setFilterSentimen] = useState("SEMUA");
 
-  // --- API 1: PoskoLog Submission ---
+  // Membungkus dengan useCallback agar referensi fungsi tetap stabil
+  const fetchAdminDashboard = useCallback(async () => {
+    setLoading(true);
+    try {
+      const client = await Client.connect("https://ferdinann-poskolog.hf.space/");
+      const result = await client.predict("/get_admin_dashboard", { filter_val: filterSentimen });
+      setAdminData({
+        chart: result.data[0],
+        table: result.data[1].data,
+        total: result.data[2]
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [filterSentimen]); // Dependency fungsi ini adalah filterSentimen
+
   const handlePoskoSubmit = async () => {
     if (!poskoComment) return alert("Komentar tidak boleh kosong");
     setLoading(true);
@@ -29,27 +44,11 @@ function App() {
     }
   };
 
-  // --- API 2: Admin Dashboard ---
-  const fetchAdminDashboard = async () => {
-    setLoading(true);
-    try {
-      const client = await Client.connect("https://ferdinann-poskolog.hf.space/");
-      const result = await client.predict("/get_admin_dashboard", { filter_val: filterSentimen });
-      setAdminData({
-        chart: result.data[0],
-        table: result.data[1].data,
-        total: result.data[2]
-      });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (activeTab === "admin") fetchAdminDashboard();
-  }, [activeTab, filterSentimen]);
+    if (activeTab === "admin") {
+      fetchAdminDashboard();
+    }
+  }, [activeTab, fetchAdminDashboard]);
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-slate-200 font-sans antialiased pb-24 md:pb-10">
