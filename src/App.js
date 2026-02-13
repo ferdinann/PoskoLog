@@ -173,7 +173,7 @@ function App() {
             {/* Filter Bar */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-[#111111] p-5 rounded-[2rem] border border-white/5 shadow-xl">
               <div>
-                <label className="text-[10px] font-black text-emerald-500 mb-2 block uppercase">Sentimen (API)</label>
+                <label className="text-[12px] font-black text-emerald-500 mb-2 block uppercase">Sentimen</label>
                 <select className="w-full bg-[#0A0A0A] border border-white/10 rounded-xl px-4 py-3.5 text-xs outline-none" value={filterSentimen} onChange={(e) => setFilterSentimen(e.target.value)}>
                   <option value="SEMUA">Semua Sentimen</option>
                   <option value="Pujian/Apresiasi">Pujian/Apresiasi</option>
@@ -182,7 +182,7 @@ function App() {
                 </select>
               </div>
               <div>
-                <label className="text-[10px] font-black text-blue-500 mb-2 block uppercase">Kategori (JS Local)</label>
+                <label className="text-[12px] font-black text-blue-500 mb-2 block uppercase">Kategori Kebutuhan</label>
                 <select className="w-full bg-[#0A0A0A] border border-white/10 rounded-xl px-4 py-3.5 text-xs outline-none" value={filterKategori} onChange={(e) => setFilterKategori(e.target.value)}>
                   <option value="SEMUA">Semua Kategori</option>
                   <option value="LOGISTIK MAKANAN">Logistik Makanan</option>
@@ -192,16 +192,16 @@ function App() {
                   <option value="UMUM">Umum</option>
                 </select>
               </div>
-              <button onClick={fetchAdminDashboard} className="md:mt-6 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold text-[10px] uppercase transition-all">🔄 Refresh</button>
+              <button onClick={fetchAdminDashboard} className="md:mt-6 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold text-[12px] uppercase transition-all">🔄 Refresh</button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-[#111111] p-6 rounded-[2rem] border border-white/5 shadow-xl">
-                <h3 className="text-[10px] font-black text-emerald-500 mb-6 uppercase tracking-widest">Sentimen (API)</h3>
+                <h3 className="text-[12px] font-black text-emerald-500 mb-6 uppercase tracking-widest">Sentimen</h3>
                 {adminData.chart ? <img src={adminData.chart.plot} alt="Sentimen" className="w-full rounded-xl bg-white/5 p-2" /> : <div className="h-40 flex items-center justify-center text-[10px] text-slate-600 uppercase">Memuat Grafik...</div>}
               </div>
               <div className="bg-[#111111] p-6 rounded-[2rem] border border-white/5 shadow-xl">
-                <h3 className="text-[10px] font-black text-blue-500 mb-6 uppercase tracking-widest">Distribusi Kebutuhan (Local JS)</h3>
+                <h3 className="text-[12px] font-black text-blue-500 mb-6 uppercase tracking-widest">Distribusi Kategori Kebutuhan</h3>
                 <div className="space-y-4 h-[250px] overflow-y-auto pr-2 custom-scrollbar">
                   {Object.entries(processedData.stats).map(([cat, count]) => {
                     const max = Math.max(...Object.values(processedData.stats));
