@@ -1,40 +1,44 @@
-# 📦 PoskoLog: Sistem Aspirasi & Analisis Sentimen Pengungsi
+# 📦 PoskoLog: Sistem Aspirasi & Analisis Sentimen Pengungsi 🚨
 
-**PoskoLog** adalah platform asisten cerdas berbasis web yang dirancang untuk memanajemen keluhan, pujian, dan pertanyaan masyarakat di posko bencana secara real-time. Dengan integrasi NLP, sistem ini mampu melakukan filtrasi otomatis untuk membantu admin memprioritaskan bantuan yang paling mendesak.
+**PoskoLog** adalah platform asisten cerdas berbasis web yang dirancang untuk mengelola keluhan, pujian, dan aspirasi masyarakat di posko bencana secara *real-time*. Dengan integrasi NLP, sistem ini melakukan filtrasi otomatis untuk membantu admin memprioritaskan bantuan yang paling mendesak.
 
 ---
 
 ## 📌 Problem Statement
-Pasca bencana, volume laporan dan keluhan dari pengungsi sangat tinggi, sehingga sulit bagi admin untuk memprosesnya secara manual. Hal ini menyebabkan risiko informasi kritis (seperti keluhan bantuan lambat atau medis) terlewatkan. PoskoLog hadir untuk mendigitalisasi proses ini, memberikan analisis sentimen instan, dan memetakan kebutuhan mendesak melalui dashboard terintegrasi.
+Dalam situasi pasca-bencana, volume laporan dari pengungsi seringkali sangat tinggi, sehingga informasi kritis (seperti keluhan bantuan medis yang lambat atau kekurangan logistik) berisiko terlewatkan. **PoskoLog** hadir untuk mendigitalisasi proses ini, memberikan analisis sentimen instan, dan memetakan kebutuhan mendesak melalui dashboard terintegrasi yang responsif.
 
-## 🤖 Teknologi & Model
-* **Model**: `w11wo/indonesian-roberta-base-sentiment-classifier`.
-* **Arsitektur**: RoBERTa-base yang dioptimalkan untuk Bahasa Indonesia informal dan slang.
-* **Interface**: Gradio dengan tema kustom Emerald.
-* **Depedensi**: Python, Pandas, dan Matplotlib untuk visualisasi data.
+## 🏗️ Arsitektur & Teknologi
+Aplikasi ini menggunakan arsitektur *decoupled* untuk efisiensi dan skalabilitas:
+
+* **Frontend**: [React.js](https://reactjs.org/) (Hooks & UI Glassmorphism) – Dideploy di **Vercel** untuk performa tinggi dan aksesibilitas global.
+* **Backend AI API**: Python (**Gradio Client**) – Dihosting di **Hugging Face Spaces** sebagai mesin pemroses NLP.
+* **Visualisasi**: Progress Bar dinamis dan Matplotlib untuk memantau distribusi kategori kebutuhan secara visual.
 
 ---
 
 ## ✨ Fitur Utama
-* **Zero-Login Interface**: Form pengaduan sederhana untuk pengungsi dengan respons otomatis ucapan terima kasih.
-* **Smart Classification**: Klasifikasi otomatis ke dalam 3 kategori: **Positif/Pujian**, **Keluhan/Kritik**, dan **Netral/Pertanyaan**.
-* **Dashboard Admin Dinamis**:
-    * **Grafik Proporsi**: Visualisasi distribusi sentimen di seluruh posko.
-    * **Tabel Top 10 Terintegrasi**: Menampilkan isi pesan, kategori sentimen, dan jumlah orang yang melaporkan masalah serupa dalam satu tampilan.
-    * **Filter Sentimen**: Fitur untuk menyaring data spesifik (misal: hanya melihat Keluhan) agar admin dapat langsung mengambil tindakan.
-* **Deployment Ready**: Dukungan penuh untuk Docker dan Docker Compose guna skalabilitas produksi.
+* **Zero-Login Interface**: Form pengaduan instan tanpa hambatan bagi pengungsi untuk menyampaikan kebutuhan mereka segera.
+* **Automated Categorization**: Klasifikasi otomatis ke dalam 4 kategori bantuan utama: **Logistik Makanan**, **Pakaian & Sandang**, **Kesehatan & Medis**, serta **Sanitasi & Air**.
+* **Smart Sentiment Analysis**: Mendeteksi emosi pesan (Pujian, Informasi, atau Keluhan) menggunakan model AI untuk menentukan skala prioritas tindakan.
+* **Dashboard Admin Glassmorphism**:
+    * **Visual Distribution**: Grafik proporsi sentimen pesan masuk secara keseluruhan.
+    * **Need Category Tracking**: Bar distribusi kebutuhan untuk memantau stok bantuan yang paling mendesak.
+    * **Multi-Filter System**: Filter ganda berdasarkan *Sentimen* dan *Kategori Kebutuhan* untuk presisi data yang lebih tajam.
 
 ---
 
 ## 📖 Cara Penggunaan
 
 ### Bagi Pengungsi (User)
-1.  Buka aplikasi melalui tautan publik.
-2.  Tuliskan aspirasi atau keluhan pada kolom "Sampaikan Pesan".
-3.  Klik tombol **Kirim Pesan**. Sistem akan memberikan konfirmasi terima kasih.
+1.  Akses aplikasi melalui URL **Vercel** resmi.
+2.  Tuliskan masukan atau kebutuhan mendesak pada kolom "Feedback".
+3.  Klik **Kirim Feedback**. Sistem akan memproses laporan secara *real-time*.
 
 ### Bagi Petugas (Admin)
-1.  Pindah ke tab **Dashboard Admin**.
-2.  Gunakan **Filter Sentimen** untuk memilih kategori pesan yang ingin dianalisis.
-3.  Klik **Refresh & Filter** untuk memperbarui grafik dan tabel 3 kolom.
-4.  Pantau tabel **Top 10** untuk melihat isu apa yang paling banyak dilaporkan oleh masyarakat.
+1.  Buka tab **Dashboard Analisis**.
+2.  Gunakan **Filter Sentimen** dan **Kategori Kebutuhan** untuk menyaring laporan spesifik (misal: mencari "Keluhan" di kategori "Logistik Makanan").
+3.  Klik tombol **Refresh** untuk menarik data terbaru langsung dari API Hugging Face.
+4.  Pantau tabel laporan untuk melihat detail waktu dan isi pesan guna pengambilan keputusan cepat.
+
+
+© 2026 HelpApp AI • Created By Ferdinan
